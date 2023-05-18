@@ -1,0 +1,19 @@
+{
+    "name": "Vocabulary-recap-note",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "description": "Vocabulary-recap-note",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://dl.acm.org/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab"
+    ]
+}
