@@ -1,12 +1,12 @@
 {
-    "name": "Vocabulary-recap-note",
+    "name": "WordBubble_Extension",
     "version": "1.0.0",
     "manifest_version": 3,
-    "description": "Vocabulary-recap-note",
+    "description": "WordBubble_Extension",
     "content_scripts": [
         {
             "matches": [
-                "https://dl.acm.org/*"
+                "https://dl.acm.org/doi/*"
             ],
             "js": [
                 "content.js"

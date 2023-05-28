@@ -18,6 +18,8 @@
 
 document.addEventListener('mouseup', function (e) {
     var selectedText = window.getSelection().toString().trim();
+    // Upper to lower case
+    selectedText = selectedText.toLowerCase();
     console.log(selectedText);
 
     // var url = 'https://www.oxfordlearnersdictionaries.com/definition/english/' + encodeURIComponent(selectedText);
@@ -42,12 +44,9 @@ document.addEventListener('mouseup', function (e) {
     //         // エラーハンドリング
     //     });
 
-    
-
-
     if (selectedText !== '') {
         var xhr = new XMLHttpRequest();
-        var baseUrl = 'https://wordbubbles.herokuapp.com/words'; // 実際のベースURLに置き換えてください
+        var baseUrl = 'https://wordbubbles.herokuapp.com/words/storeFromOutside'; // 実際のベースURLに置き換えてください
         var name = selectedText; // URLエンコードするデータ
 
         var url = baseUrl + '?name=' + encodeURIComponent(name); // URLエンコードしてクエリパラメータを組み立てる
@@ -55,11 +54,40 @@ document.addEventListener('mouseup', function (e) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // リクエストが成功した場合の処理
-                console.log(xhr.responseText);
+                console.log("word stored");
             }
         };
 
         xhr.open('GET', url, true);
         xhr.send();
     }
+});
+
+document.addEventListener('click', function (e) {
+    var title = document.getElementsByClassName("citation__title")[0].innerText;
+    var author_data = document.getElementsByClassName("loa__author-name");
+    var authors = [];
+
+    for (var i = 0; i < author_data.length; i++) {
+        var author = author_data[i].innerText;
+        authors.push(author);
+    }
+
+    console.log(title);
+    console.log(authors);
+
+    var xhr = new XMLHttpRequest();
+    var baseUrl = 'https://wordbubbles.herokuapp.com/authors/storeFromOutside'; // 実際のベースURLに置き換えてください
+    var url = baseUrl;
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // リクエストが成功した場合の処理
+            console.log("author stored");
+        }
+    };
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ title: title, authors: authors }));
 });
