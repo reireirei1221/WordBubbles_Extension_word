@@ -1,12 +1,12 @@
 {
-    "name": "WordBubble_Extension",
+    "name": "WordBubble_Extension_word",
     "version": "1.0.0",
     "manifest_version": 3,
-    "description": "WordBubble_Extension",
+    "description": "WordBubble_Extension_word",
     "content_scripts": [
         {
             "matches": [
-                "https://dl.acm.org/doi/*"
+                "https://*/*"
             ],
             "js": [
                 "content.js"
