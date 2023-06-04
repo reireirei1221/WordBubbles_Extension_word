@@ -2,6 +2,13 @@ document.addEventListener('mouseup', function (e) {
     var selectedText = window.getSelection().toString().trim();
 
     if (selectedText !== '') {
+
+        // If selectedText is not English, return
+        if (!/^[a-zA-Z]+$/.test(selectedText)) {
+            console.log("not english");
+            return;
+        }
+
         selectedText = selectedText.toLowerCase();
         console.log(selectedText);
 
